@@ -5,3 +5,6 @@
 terraform.tfstate
 terraform.tfstate.backup
 */terraform.tfvars
+
+my_aws_key
+my_aws_key.pub
