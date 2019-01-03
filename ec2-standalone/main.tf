@@ -12,6 +12,7 @@ resource "aws_instance" "stand-alone" {
   key_name      = "${aws_key_pair.my_aws_key.key_name}"
   subnet_id     = "${module.my-vpc.subnet-public-1a-id}"
   vpc_security_group_ids = ["${aws_security_group.tf-security-grp.id}"]
+  user_data = "${module.ebs-volume.cloudinit-storage-template}"
 
 //  provisioner "file" {
 //    source      = "script.sh"
