@@ -1,6 +1,5 @@
 variable "AWS_REGION" {
   description = "AWS Region"
-  default = "us-east-1"
 }
 
 variable "AMIS" {
@@ -27,3 +26,17 @@ variable "PATH_TO_PRIVATE_KEY" {
 variable "INSTANCE_USER" {
   default = "ubuntu"
 }
+
+variable "SUBNET_ID" {}
+
+variable "VPC_SECURITY_GRPS" {
+  type = "list"
+}
+
+variable "CLOUD_INIT_TEMPLATE" {}
+
+variable "SECURITY_GRPS" {
+  type = "list"
+}
+
+variable "EBS_VOLUME_ID" {}
