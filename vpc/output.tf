@@ -25,3 +25,7 @@ output "subnet-private-1b-id" {
 output "subnet-private-1c-id" {
   value = "${aws_subnet.tf-main-private-3.id}"
 }
+
+output "ec2-instance-security-grp" {
+  value = "${aws_security_group.ec2-instance-security-grp.id}"
+}
