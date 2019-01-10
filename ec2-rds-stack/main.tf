@@ -6,6 +6,7 @@ module "ec2-instance" {
   SECURITY_GRPS = ["${module.vpc.ec2-instance-security-grp}"]
   EBS_VOLUME_ID = "${module.storage.ebs-volume-id}"
   AWS_REGION = "${var.AWS_REGION}"
+  KEY_NAME = "${module.key.key_name}"
 }
 
 module "vpc" {
@@ -28,4 +29,9 @@ module "rds" {
   MARIADB_SECURITY_GRP_ID = ["${module.vpc.mariadb-security-grp-id}"]
   PREFERRED_MARIADB_AVAILABILITY_ZONE = "${module.vpc.subnet-private-1a-availability-zone}"
   MARIADB_SECURITY_GRP_ID_LIST = ["${module.vpc.subnet-private-1a-id}", "${module.vpc.subnet-private-1b-id}"]
+}
+
+module "key" {
+  source = "./../key"
+  PATH_TO_PUBLIC_KEY = "${var.PATH_TO_PUBLIC_KEY}"
 }

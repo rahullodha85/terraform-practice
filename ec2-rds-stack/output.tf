@@ -3,5 +3,5 @@ output "ec2_instance_public_ip" {
 }
 
 output "mariadb_host_name" {
-  value = "${module.rds}"
+  value = "${module.rds.rds_host}"
 }

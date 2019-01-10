@@ -40,3 +40,5 @@ variable "SECURITY_GRPS" {
 }
 
 variable "EBS_VOLUME_ID" {}
+
+variable "KEY_NAME" {}

@@ -4,3 +4,7 @@ variable "AWS_REGION" {
 }
 
 variable "MARIADB_PASSWORD" {}
+
+variable "PATH_TO_PUBLIC_KEY" {
+  default = "my_aws_key.pub"
+}
