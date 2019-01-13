@@ -16,7 +16,7 @@ resource "aws_autoscaling_group" "asg_example" {
   max_size = "${var.MAX_SIZE}"
   min_size = "${var.MIN_SIZE}"
   health_check_type = "${var.HEALTHCHK_TYPE}"
-  load_balancers = "${var.LOAD_BALANCERS}"
+  load_balancers = ["${var.LOAD_BALANCERS}"]
   force_delete = true
 
   tag {
