@@ -5,6 +5,8 @@ module "auto_scaling" {
   VPC_ZONE_IDENTIFIER = ["${module.vpc.subnet-public-1a-id}", "${module.vpc.subnet-public-1b-id}"]
   AWS_KEY = "${module.key.key_name}"
   FILE_NAME = "script.sh"
+  HEALTHCHK_TYPE = "EC2"
+  LOAD_BALANCERS = []
 }
 
 module "vpc" {

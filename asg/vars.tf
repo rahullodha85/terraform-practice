@@ -20,3 +20,9 @@ variable "VPC_ZONE_IDENTIFIER" {
 variable "AWS_KEY" {}
 
 variable "FILE_NAME" {}
+
+variable "HEALTHCHK_TYPE" {}
+
+variable "LOAD_BALANCERS" {
+  type = "list"
+}

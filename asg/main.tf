@@ -15,7 +15,8 @@ resource "aws_autoscaling_group" "asg_example" {
   launch_configuration = "${aws_launch_configuration.asg_launch_conf.name}"
   max_size = "${var.MAX_SIZE}"
   min_size = "${var.MIN_SIZE}"
-  health_check_type = "EC2"
+  health_check_type = "${var.HEALTHCHK_TYPE}"
+  load_balancers = "${var.LOAD_BALANCERS}"
   force_delete = true
 
   tag {
