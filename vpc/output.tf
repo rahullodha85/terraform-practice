@@ -50,10 +50,10 @@ output "subnet-private-1c-availability-zone" {
   value = "${aws_subnet.tf-main-private-3.availability_zone}"
 }
 
-output "ec2-instance-security-grp" {
-  value = "${aws_security_group.ec2-instance-security-grp.id}"
-}
-
-output "mariadb-security-grp-id" {
-  value = "${aws_security_group.allow_mariadb.id}"
-}
+//output "ec2-instance-security-grp" {
+//  value = "${aws_security_group.ec2-instance-security-grp.id}"
+//}
+//
+//output "mariadb-security-grp-id" {
+//  value = "${aws_security_group.allow_mariadb.id}"
+//}
