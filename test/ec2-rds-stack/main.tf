@@ -2,7 +2,7 @@ module "ec2-instance" {
   source = "./../../ec2-standalone"
   SUBNET_ID = "${module.vpc.subnet-public-1a-id}"
   VPC_SECURITY_GRPS = ["${module.ec2-security-grp.id}"]
-  CLOUD_INIT_TEMPLATE = "${module.storage.cloudinit-storage-template}"
+  USER_DATA = "${module.storage.cloudinit-storage-template}"
   SECURITY_GRPS = ["${module.ec2-security-grp.id}"]
   EBS_VOLUME_ID = "${module.storage.ebs-volume-id}"
   AWS_REGION = "${var.AWS_REGION}"

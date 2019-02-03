@@ -33,7 +33,7 @@ variable "VPC_SECURITY_GRPS" {
   type = "list"
 }
 
-variable "CLOUD_INIT_TEMPLATE" {}
+variable "USER_DATA" {}
 
 variable "SECURITY_GRPS" {
   type = "list"
