@@ -89,3 +89,11 @@ module "rds-ingress" {
   SOURCE_SECURITY_GRP_ID = "${module.ec2-security-grp.id}"
   SECURITY_GRP_ID = "${module.rds-security-grp.id}"
 }
+
+terraform {
+  backend "s3" {
+    bucket = "rogue-bucket"
+    key = "terraform/ec2-rds"
+    region = "us-east-1"
+  }
+}

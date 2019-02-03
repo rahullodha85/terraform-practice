@@ -88,3 +88,11 @@ module "asg" {
   MAX_SIZE = 2
   MIN_SIZE = 2
 }
+
+terraform {
+  backend "s3" {
+    bucket = "rogue-bucket"
+    key = "terraform/elb-asg"
+    region = "us-east-1"
+  }
+}

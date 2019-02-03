@@ -53,3 +53,11 @@ module "ec2-ingress-ssh" {
   CIDR_BLOCKS = ["0.0.0.0/0"]
   PROTOCOL = "tcp"
 }
+
+terraform {
+  backend "s3" {
+    bucket = "rogue-bucket"
+    key = "terraform/ec2-ebs"
+    region = "us-east-1"
+  }
+}

@@ -54,3 +54,11 @@ module "ec2-ingress-web" {
   PROTOCOL = "tcp"
   CIDR_BLOCKS = ["0.0.0.0/0"]
 }
+
+terraform {
+  backend "s3" {
+    bucket = "rogue-bucket"
+    key = "terraform/asg"
+    region = "us-east-1"
+  }
+}
