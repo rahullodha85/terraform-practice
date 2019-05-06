@@ -29,3 +29,11 @@ module "sec-grp" {
   SECURITY_GRP_DESCRIPTION = "test"
   SECURITY_GRP_NAME = "test"
 }
+
+terraform {
+  backend "s3" {
+    bucket = "rogue-bucket"
+    key = "terraform/ec2-test"
+    region = "us-east-1"
+  }
+}
