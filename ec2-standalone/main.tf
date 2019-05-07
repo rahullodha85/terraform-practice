@@ -2,10 +2,11 @@ resource "aws_instance" "stand-alone" {
   ami           = "${lookup(var.AMIS, var.AWS_REGION)}"
   instance_type = "${var.INSTANCE_SIZE}"
   key_name      = "${var.KEY_NAME}"
-  subnet_id     = "${var.SUBNET_ID}"
+  subnet_id     = "${var.SUBNET_ID[count.index]}"
   vpc_security_group_ids = ["${var.VPC_SECURITY_GRPS}"]
   user_data = "${var.USER_DATA}"
-  security_groups = ["${var.SECURITY_GRPS}"]
+  availability_zone = "${element(var.AVAILABILITY_ZONE, count.index)}"
+  count = "${var.COUNT}"
 
 //  provisioner "file" {
 //    source      = "${path.module}/script.sh"

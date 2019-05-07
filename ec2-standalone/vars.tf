@@ -27,7 +27,9 @@ variable "INSTANCE_USER" {
   default = "ubuntu"
 }
 
-variable "SUBNET_ID" {}
+variable "SUBNET_ID" {
+  type = "list"
+}
 
 variable "VPC_SECURITY_GRPS" {
   type = "list"
@@ -35,10 +37,16 @@ variable "VPC_SECURITY_GRPS" {
 
 variable "USER_DATA" {}
 
-variable "SECURITY_GRPS" {
-  type = "list"
-}
+//variable "SECURITY_GRPS" {
+//  type = "list"
+//}
 
 variable "EBS_VOLUME_ID" {}
 
 variable "KEY_NAME" {}
+
+variable "COUNT" {}
+
+variable "AVAILABILITY_ZONE" {
+  type = "list"
+}
