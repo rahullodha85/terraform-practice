@@ -1,5 +1,5 @@
 variable "AVAILABILITY_ZONE" {
-  default = "us-east-1a"
+  type = "list"
 }
 
 variable "DEVICE_NAME" {
@@ -9,3 +9,5 @@ variable "DEVICE_NAME" {
 variable "VOLUME_NAME" {
   default = "volume1"
 }
+
+variable "INSTANCE_COUNT" {}
