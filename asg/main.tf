@@ -9,9 +9,7 @@ resource "aws_launch_configuration" "asg_launch_conf" {
 
 resource "aws_autoscaling_group" "asg_example" {
   name = "asg_example"
-  vpc_zone_identifier = [
-    "${var.VPC_ZONE_IDENTIFIER}",
-    "${var.VPC_ZONE_IDENTIFIER}"]
+  vpc_zone_identifier = ["${var.VPC_ZONE_IDENTIFIER}"]
   launch_configuration = "${aws_launch_configuration.asg_launch_conf.name}"
   max_size = "${var.MAX_SIZE}"
   min_size = "${var.MIN_SIZE}"
