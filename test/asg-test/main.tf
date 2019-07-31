@@ -2,15 +2,17 @@ module "auto_scaling" {
   source = "./../../asg"
   AMI_ID = "${lookup(var.AMIS, var.AWS_REGION)}"
   SECURITY_GRPS = ["${module.ec2-security-grp.id}"]
-  VPC_ZONE_IDENTIFIER = ["${module.vpc.subnet-public-1a-id}", "${module.vpc.subnet-public-1b-id}"]
+  VPC_ZONE_IDENTIFIER = "${module.data-queries.tf-vpc-subnet-public}"
   AWS_KEY = "${module.key.key_name}"
   FILE_NAME = "script.sh"
   HEALTHCHK_TYPE = "EC2"
   LOAD_BALANCERS = []
+  MAX_SIZE = "${var.INSTANCE_COUNT}"
 }
 
-module "vpc" {
-  source = "./../../vpc"
+module "data-queries" {
+  source = "../../data-queries"
+  COUNT = "${var.INSTANCE_COUNT}"
 }
 
 module "key" {
@@ -21,7 +23,7 @@ module "key" {
 module "ec2-security-grp" {
   source = "./../../security-group"
   SECURITY_GRP_DESCRIPTION = "ec2-instance security group"
-  VPC_ID = "${module.vpc.vpc_id}"
+  VPC_ID = "${module.data-queries.vpc-main}"
   SECURITY_GRP_NAME = "ec2-instance-security-grp"
 }
 
@@ -53,6 +55,10 @@ module "ec2-ingress-web" {
   TO_PORT = 80
   PROTOCOL = "tcp"
   CIDR_BLOCKS = ["0.0.0.0/0"]
+}
+
+provider "aws" {
+  region = "${var.AWS_REGION}"
 }
 
 terraform {
