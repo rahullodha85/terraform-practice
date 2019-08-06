@@ -12,6 +12,7 @@ module "ec2-instance" {
   INSTANCE_COUNT    = "${var.COUNT}"
   AVAILABILITY_ZONE = "${module.data-queries.availability-zones}"
   SUBNET_ID         = "${module.data-queries.tf-vpc-subnet-public}"
+  MY_AMI            = "${var.MY_AMI}"
 }
 
 module "key" {
@@ -27,6 +28,26 @@ module "sec-grp" {
   VPC_ID                   = "${module.data-queries.vpc-main}"
   SECURITY_GRP_DESCRIPTION = "test"
   SECURITY_GRP_NAME        = "test"
+}
+
+module "sec-grp-rule-ssh" {
+  source = "../../security-group-rule/cidr"
+  CIDR_BLOCKS = ["0.0.0.0/0"]
+  FROM_PORT = "22"
+  PROTOCOL = "tcp"
+  SECURITY_GRP_ID = "${module.sec-grp.id}"
+  TO_PORT = "22"
+  TYPE = "ingress"
+}
+
+module "ec2-egress" {
+  source          = "./../../security-group-rule/cidr"
+  FROM_PORT       = 0
+  TYPE            = "egress"
+  CIDR_BLOCKS     = ["0.0.0.0/0"]
+  PROTOCOL        = -1
+  SECURITY_GRP_ID = "${module.sec-grp.id}"
+  TO_PORT         = 0
 }
 
 terraform {

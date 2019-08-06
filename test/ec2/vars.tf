@@ -5,3 +5,7 @@ variable "AWS_REGION" {
 variable "COUNT" {
   default = 1
 }
+
+variable "MY_AMI" {
+  default = "ami-07b3e643c6508fecb"
+}

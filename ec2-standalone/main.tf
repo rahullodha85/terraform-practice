@@ -1,5 +1,5 @@
 resource "aws_instance" "stand-alone" {
-  ami                    = "${lookup(var.AMIS, var.AWS_REGION)}"
+  ami                    =  "${var.MY_AMI}"//"${lookup(var.AMIS, var.AWS_REGION)}"
   instance_type          = "${var.INSTANCE_SIZE}"
   key_name               = "${var.KEY_NAME}"
   subnet_id              = "${var.SUBNET_ID[count.index]}"

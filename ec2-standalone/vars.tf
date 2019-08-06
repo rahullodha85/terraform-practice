@@ -45,3 +45,5 @@ variable "INSTANCE_COUNT" {}
 variable "AVAILABILITY_ZONE" {
   type = "list"
 }
+
+variable "MY_AMI" {}
