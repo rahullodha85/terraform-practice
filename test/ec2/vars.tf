@@ -7,5 +7,5 @@ variable "COUNT" {
 }
 
 variable "MY_AMI" {
-  default = "ami-07b3e643c6508fecb"
+  default = "ami-01d33a64698f1d219"
 }

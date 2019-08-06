@@ -40,6 +40,16 @@ module "sec-grp-rule-ssh" {
   TYPE = "ingress"
 }
 
+module "sec-grp-rule-http" {
+  source = "../../security-group-rule/cidr"
+  CIDR_BLOCKS = ["0.0.0.0/0"]
+  FROM_PORT = "80"
+  PROTOCOL = "tcp"
+  SECURITY_GRP_ID = "${module.sec-grp.id}"
+  TO_PORT = "80"
+  TYPE = "ingress"
+}
+
 module "ec2-egress" {
   source          = "./../../security-group-rule/cidr"
   FROM_PORT       = 0
