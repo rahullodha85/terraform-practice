@@ -1,7 +1,8 @@
 variable "SUBNETS" {
-  type = "list"
+  type = list(string)
 }
 
 variable "SECURITY_GRPS" {
-  type = "list"
+  type = list(string)
 }
+

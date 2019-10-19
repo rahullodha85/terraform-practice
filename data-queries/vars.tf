@@ -1,1 +1,3 @@
-variable "COUNT" {}
+variable "COUNT" {
+}
+

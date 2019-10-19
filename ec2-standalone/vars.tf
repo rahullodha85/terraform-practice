@@ -3,7 +3,7 @@ variable "AWS_REGION" {
 }
 
 variable "AMIS" {
-  type = "map"
+  type = map(string)
 
   default = {
     us-east-1 = "ami-0ac019f4fcb7cb7e6"
@@ -29,19 +29,23 @@ variable "INSTANCE_USER" {
 }
 
 variable "SUBNET_ID" {
-  type = "list"
+  type = list(string)
 }
 
 variable "VPC_SECURITY_GRPS" {
-  type = "list"
+  type = list(string)
 }
 
-variable "USER_DATA" {}
+variable "USER_DATA" {
+}
 
-variable "KEY_NAME" {}
+variable "KEY_NAME" {
+}
 
-variable "INSTANCE_COUNT" {}
+variable "INSTANCE_COUNT" {
+}
 
 variable "AVAILABILITY_ZONE" {
-  type = "list"
+  type = list(string)
 }
+

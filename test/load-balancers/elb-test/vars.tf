@@ -7,7 +7,7 @@ variable "PATH_TO_PRIVATE_KEY" {
 }
 
 variable "AMIS" {
-  type = "map"
+  type = map(string)
   default = {
     us-east-1 = "ami-0ac019f4fcb7cb7e6"
     us-east-2 = "ami-02e680c4540db351e"
@@ -21,3 +21,4 @@ variable "AWS_REGION" {
 variable "INSTANCE_COUNT" {
   default = 1
 }
+

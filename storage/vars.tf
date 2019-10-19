@@ -1,5 +1,5 @@
 variable "AVAILABILITY_ZONE" {
-  type = "list"
+  type = list(string)
 }
 
 variable "DEVICE_NAME" {
@@ -10,4 +10,6 @@ variable "VOLUME_NAME" {
   default = "volume1"
 }
 
-variable "INSTANCE_COUNT" {}
+variable "INSTANCE_COUNT" {
+}
+

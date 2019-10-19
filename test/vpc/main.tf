@@ -5,7 +5,7 @@ module "vpc" {
 terraform {
   backend "s3" {
     bucket = "rogue-bucket"
-    key = "terraform/ec2-ebs"
+    key    = "terraform/vpc"
     region = "us-east-1"
   }
 }
@@ -13,3 +13,4 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
