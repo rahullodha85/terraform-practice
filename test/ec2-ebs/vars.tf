@@ -5,3 +5,4 @@ variable "INSTANCE_COUNT" {
 variable "AWS_REGION" {
   default = "us-east-1"
 }
+

@@ -1,13 +1,19 @@
-variable "FROM_PORT" {}
+variable "FROM_PORT" {
+}
 
-variable "PROTOCOL" {}
+variable "PROTOCOL" {
+}
 
-variable "SECURITY_GRP_ID" {}
+variable "SECURITY_GRP_ID" {
+}
 
-variable "TO_PORT" {}
+variable "TO_PORT" {
+}
 
-variable "TYPE" {}
+variable "TYPE" {
+}
 
 variable "CIDR_BLOCKS" {
-  type = "list"
+  type = list(string)
 }
+

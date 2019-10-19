@@ -1,11 +1,18 @@
-variable "FROM_PORT" {}
+variable "FROM_PORT" {
+}
 
-variable "PROTOCOL" {}
+variable "PROTOCOL" {
+}
 
-variable "SECURITY_GRP_ID" {}
+variable "SECURITY_GRP_ID" {
+}
 
-variable "TO_PORT" {}
+variable "TO_PORT" {
+}
 
-variable "TYPE" {}
+variable "TYPE" {
+}
 
-variable "SOURCE_SECURITY_GRP_ID" {}
+variable "SOURCE_SECURITY_GRP_ID" {
+}
+
