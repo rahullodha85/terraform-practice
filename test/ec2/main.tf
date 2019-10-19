@@ -1,17 +1,17 @@
 module "data-queries" {
   source = "../../data-queries"
-  COUNT  = "${var.COUNT}"
+  COUNT  = var.COUNT
 }
 
 module "ec2-instance" {
   source            = "../../ec2-standalone"
-  VPC_SECURITY_GRPS = ["${module.sec-grp.id}"]
-  KEY_NAME          = "${module.key.key_name}"
-  AWS_REGION        = "${var.AWS_REGION}"
+  VPC_SECURITY_GRPS = [module.sec-grp.id]
+  KEY_NAME          = module.key.key_name
+  AWS_REGION        = var.AWS_REGION
   USER_DATA         = ""
-  INSTANCE_COUNT    = "${var.COUNT}"
-  AVAILABILITY_ZONE = "${module.data-queries.availability-zones}"
-  SUBNET_ID         = "${module.data-queries.tf-vpc-subnet-public}"
+  INSTANCE_COUNT    = var.COUNT
+  AVAILABILITY_ZONE = module.data-queries.availability-zones
+  SUBNET_ID         = module.data-queries.tf-vpc-subnet-public
 }
 
 module "key" {
@@ -19,12 +19,12 @@ module "key" {
 }
 
 provider "aws" {
-  region = "${var.AWS_REGION}"
+  region = var.AWS_REGION
 }
 
 module "sec-grp" {
   source                   = "../../security-group"
-  VPC_ID                   = "${module.data-queries.vpc-main}"
+  VPC_ID                   = module.data-queries.vpc-main
   SECURITY_GRP_DESCRIPTION = "test"
   SECURITY_GRP_NAME        = "test"
 }
@@ -36,3 +36,4 @@ terraform {
     region = "us-east-1"
   }
 }
+
