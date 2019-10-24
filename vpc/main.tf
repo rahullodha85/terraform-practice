@@ -148,7 +148,7 @@ resource "aws_subnet" "tf-main-private-6" {
 resource "aws_internet_gateway" "tf-main-gw" {
   vpc_id = aws_vpc.tf-main.id
   tags = {
-    Name = "false"
+    Name = "my-gateway"
   }
 }
 
