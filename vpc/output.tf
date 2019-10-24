@@ -50,6 +50,10 @@ output "subnet-private-1c-availability-zone" {
   value = aws_subnet.tf-main-private-3.availability_zone
 }
 
+output "route-table" {
+  value = aws_route_table.tf-main-public.*.id
+}
+
 //output "ec2-instance-security-grp" {
 //  value = "${aws_security_group.ec2-instance-security-grp.id}"
 //}

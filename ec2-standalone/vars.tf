@@ -49,3 +49,6 @@ variable "AVAILABILITY_ZONE" {
   type = list(string)
 }
 
+variable "ASSOCIATE_PUBLIC_IP_ADDRESS" {
+  default = "true"
+}
