@@ -1,14 +1,15 @@
 resource "aws_ebs_volume" "ebs-volume-1" {
-  count             = "${var.INSTANCE_COUNT}"
-  availability_zone = "${element(var.AVAILABILITY_ZONE, count.index)}"
+  count             = var.INSTANCE_COUNT
+  availability_zone = element(var.AVAILABILITY_ZONE, count.index)
   size              = 10
   type              = "gp2"
 
-  tags {
+  tags = {
     Name = "extra volume data"
   }
 }
 
 output "ebs-volume-id" {
-  value = "${aws_ebs_volume.ebs-volume-1.*.id}"
+  value = aws_ebs_volume.ebs-volume-1.*.id
 }
+
