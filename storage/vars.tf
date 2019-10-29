@@ -13,3 +13,7 @@ variable "VOLUME_NAME" {
 variable "INSTANCE_COUNT" {
 }
 
+variable "VOLUME_SIZE" {
+  default = 10
+}
+
