@@ -12,6 +12,7 @@ module "ec2-instance" {
   SUBNET_ID         = module.data-queries.tf-vpc-subnet-public
   INSTANCE_COUNT    = var.INSTANCE_COUNT
   AVAILABILITY_ZONE = module.data-queries.availability-zones
+  MY_AMI            = var.AMIS[var.AWS_REGION]
 }
 
 module "ebs" {
