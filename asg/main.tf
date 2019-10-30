@@ -3,7 +3,7 @@ resource "aws_launch_configuration" "asg_launch_conf" {
   instance_type   = var.INSTANCE_TYPE
   key_name        = var.AWS_KEY
   security_groups = var.SECURITY_GRPS
-  user_data       = file(var.FILE_NAME)
+  user_data       = data.template_cloudinit_config.user-data.rendered
 }
 
 resource "aws_autoscaling_group" "asg_example" {
@@ -79,5 +79,21 @@ resource "aws_cloudwatch_metric_alarm" "cpu_alarm_scaledown" {
   alarm_actions = [
     aws_autoscaling_policy.cpu_scale_down.arn,
   ]
+}
+
+data "template_file" "shell-script" {
+  template = var.FILE_NAME
+  vars = {
+    TEST = var.TEST
+  }
+}
+
+data "template_cloudinit_config" "user-data" {
+
+  part {
+    filename     = "volume-mount.sh"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.shell-script.rendered
+  }
 }
 

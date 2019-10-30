@@ -4,10 +4,11 @@ module "auto_scaling" {
   SECURITY_GRPS       = [module.ec2-security-grp.id]
   VPC_ZONE_IDENTIFIER = module.data-queries.tf-vpc-subnet-public
   AWS_KEY             = module.key.key_name
-  FILE_NAME           = "script.sh"
+  FILE_NAME           = file("${path.module}/script.sh")
   HEALTHCHK_TYPE      = "EC2"
   LOAD_BALANCERS      = []
   MAX_SIZE            = var.INSTANCE_COUNT
+  TEST = "abc test"
 }
 
 module "data-queries" {
