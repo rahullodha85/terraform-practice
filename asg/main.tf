@@ -82,7 +82,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_alarm_scaledown" {
 }
 
 data "template_file" "shell-script" {
-  template = var.FILE_NAME
+  template = var.FILE
   vars = {
     TEST = var.TEST
   }

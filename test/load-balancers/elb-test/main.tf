@@ -84,7 +84,7 @@ module "asg" {
   AWS_KEY             = module.key.key_name
   LOAD_BALANCERS      = [module.elb.load_balancer_name]
   AMI_ID              = var.AMIS[var.AWS_REGION]
-  FILE_NAME           = "script.sh"
+  FILE           = "script.sh"
   HEALTHCHK_TYPE      = "ELB"
   MAX_SIZE            = 3
   MIN_SIZE            = var.INSTANCE_COUNT
