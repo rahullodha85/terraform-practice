@@ -1,7 +1,7 @@
 resource "aws_ebs_volume" "ebs-volume-1" {
   count             = var.INSTANCE_COUNT
   availability_zone = element(var.AVAILABILITY_ZONE, count.index)
-  size              = 10
+  size              = var.VOLUME_SIZE
   type              = "gp2"
 
   tags = {
