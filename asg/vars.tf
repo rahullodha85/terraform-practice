@@ -34,5 +34,3 @@ variable "HEALTHCHK_TYPE" {
 variable "LOAD_BALANCERS" {
   type = list(string)
 }
-
-variable "TEST" {}

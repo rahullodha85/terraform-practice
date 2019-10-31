@@ -4,11 +4,10 @@ module "auto_scaling" {
   SECURITY_GRPS       = [module.ec2-security-grp.id]
   VPC_ZONE_IDENTIFIER = module.data-queries.tf-vpc-subnet-public
   AWS_KEY             = module.key.key_name
-  FILE                = file("${path.module}/script.sh")
+  FILE                = data.template_cloudinit_config.user-data.rendered
   HEALTHCHK_TYPE      = "EC2"
   LOAD_BALANCERS      = []
   MAX_SIZE            = var.INSTANCE_COUNT
-  TEST                = "abc test"
 }
 
 module "data-queries" {
@@ -67,6 +66,24 @@ terraform {
     bucket = "rogue-bucket"
     key    = "terraform/asg"
     region = "us-east-1"
+  }
+}
+
+variable "TEST" {
+}
+data "template_file" "shell-script" {
+  template = file("${path.module}/script.sh")
+  vars = {
+    TEST = var.TEST
+  }
+}
+
+data "template_cloudinit_config" "user-data" {
+
+  part {
+    filename     = data.template_file.shell-script.filename
+    content_type = "text/x-shellscript"
+    content      = data.template_file.shell-script.rendered
   }
 }
 
