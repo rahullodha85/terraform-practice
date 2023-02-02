@@ -21,3 +21,15 @@ variable "managed_policy_arns" {
 variable "output_path" {}
 
 variable "source_file" {}
+
+variable "function_name" {}
+
+variable "handler" {}
+
+variable "runtime" {}
+
+variable "subnet_ids" {
+  type = list(string)
+}
+
+variable "vpc_id" {}
