@@ -37,27 +37,12 @@ func Handler(ctx context.Context, event MyEvent) (events.APIGatewayProxyResponse
     for _, item := range result {
         fmt.Println(item)
     }
-	//
-	//     user := User{
-	//         Login:    "test_user",
-	//         Password: "test1234567890",
-	//         }
-	//         CreateUser(user, db)
-	//     GetUsers(db, &result)
-	//     for _, item := range result {
-	//         fmt.Println(item)
-	//     }
-	//
-	//     DeleteUser(user, db)
-	//     GetUsers(db, &result)
-	//     for _, item := range result {
-	//         fmt.Println(item)
-	//     }
-	//
-	return events.APIGatewayProxyResponse{
-		Body:       "Hello world",
-		StatusCode: 200,
-	}, nil
+
+    DeleteUser(user, db)
+    GetUsers(db, &result)
+    for _, item := range result {
+        fmt.Println(item)
+    }
 }
 
 func GetUsers(db *gorm.DB, result *[]Result) {
@@ -72,19 +57,19 @@ func GetUsers(db *gorm.DB, result *[]Result) {
     order by sp.name;`, 3).Scan(&result)
 }
 
-//func CreateUser(user User, db *gorm.DB) {
-//	sqlQuery := fmt.Sprintf(`use master
-//CREATE LOGIN %v WITH PASSWORD = '%v';`, user.Login, user.Password)
-//	fmt.Printf("Executing query: %v", sqlQuery)
-//    db.Exec(sqlQuery)
-//}
-//
-//func DeleteUser(user User, db *gorm.DB) {
-//    sqlQuery := fmt.Sprintf(`drop login %v;`, user.Login)
-//    fmt.Printf("Executing query: %v", sqlQuery)
-//    db.Exec(sqlQuery)
-//}
-//
+func CreateUser(user User, db *gorm.DB) {
+	sqlQuery := fmt.Sprintf(`use master
+CREATE LOGIN %v WITH PASSWORD = '%v';`, user.Login, user.Password)
+	fmt.Printf("Executing query: %v", sqlQuery)
+    db.Exec(sqlQuery)
+}
+
+func DeleteUser(user User, db *gorm.DB) {
+    sqlQuery := fmt.Sprintf(`drop login %v;`, user.Login)
+    fmt.Printf("Executing query: %v", sqlQuery)
+    db.Exec(sqlQuery)
+}
+
 type Result struct {
 	Login      string
 	Login_type string

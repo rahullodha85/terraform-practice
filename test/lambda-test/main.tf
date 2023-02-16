@@ -19,6 +19,44 @@ module "vpc" {
   COUNT = 3
 }
 
+//resource "aws_db_instance" "sql_server" {
+//  allocated_storage = 100
+//  engine = "sqlserver-se"
+//  engine_version = "14.00.3451.2.v1"
+//  instance_class = "db.m4.large"
+//  identifier = "mssql"
+//  name = null
+//  username = "admin"
+//  password = "test1234567890"
+//  db_subnet_group_name = "${aws_db_subnet_group.mariadb-subnet.name}"
+////  parameter_group_name = "${aws_db_parameter_group.mariadb-parameters.name}"
+//  multi_az = "false"
+//  vpc_security_group_ids = ["${module.lambda.lambda_sg}"]
+//  storage_type = "gp2"
+//  backup_retention_period = 30
+//  skip_final_snapshot = true
+//  license_model = "license-included"
+////  tags {
+////    Name = "mariadb-instance"
+////  }
+//}
+//
+////resource "aws_db_parameter_group" "mariadb-parameters" {
+////  name = "mssql-parameters"
+////  family = "mariadb10.3"
+////  description = "MSSQL parameter group"
+////  parameter {
+////    name = ""
+////    value = "16777216"
+////  }
+////}
+//
+//resource "aws_db_subnet_group" "mariadb-subnet" {
+//  name = "mariadb-subnet"
+//  description = "RDS mariadb subnet group"
+//  subnet_ids = module.vpc.tf-vpc-subnet-public
+//}
+
 data "aws_lambda_invocation" "lambda_invoke" {
   depends_on = [module.lambda]
   function_name = module.lambda.function_name
