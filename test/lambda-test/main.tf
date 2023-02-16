@@ -4,10 +4,10 @@ module "lambda" {
   output_path = "./output.zip"
   policy-actions = ["s3:ListBucket"]
   resources = ["arn:aws:s3:::micro-frontend-1", "arn:aws:s3:::micro-frontend-1/*"]
-  role_name = "rds-user-lambda"
+  role_name = "golang-sts-lambda"
   source_file = "./output/app"
   trusted_resource = "lambda.amazonaws.com"
-  function_name = "rds-user"
+  function_name = "golang-sts-test"
   handler = "app"
   runtime = "go1.x"
   subnet_ids = module.vpc.tf-vpc-subnet-public
