@@ -3,6 +3,7 @@ module rds
 go 1.19
 
 require (
+	github.com/aws/aws-lambda-go v1.37.0
 	gorm.io/driver/sqlserver v1.4.2
 	gorm.io/gorm v1.24.3
 )
