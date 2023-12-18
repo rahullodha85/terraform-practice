@@ -13,5 +13,5 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/microsoft/go-mssqldb v0.19.0 // indirect
-	golang.org/x/crypto v0.0.0-20221005025214-4161e89ecf1b // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 )
