@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fast-api-test
+    container_name: fast-api-test
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=test

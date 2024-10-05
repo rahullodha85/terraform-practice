@@ -1,10 +1,11 @@
 .idea/
-
+.venv
 # Terraform
 .terraform/
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
+.terraform.lock.hcl
 
 my_aws_key
 my_aws_key.pub
