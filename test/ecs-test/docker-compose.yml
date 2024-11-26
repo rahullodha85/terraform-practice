@@ -1,13 +1,32 @@
+version: '3.8'
 services:
-  api:
+  fast-api-1:
+    networks:
+      - my_network
     build:
-      context: .
-      dockerfile: Dockerfile
-    image: fast-api-test
-    container_name: fast-api-test
+      context: fast-api-1
+    image: fast-api-1
+    container_name: fast-api-1
     ports:
       - "8000:8000"
     environment:
       - ENV=test
-      - HOST="0.0.0.0"
-      - PORT=8000
+#      - HOST="0.0.0.0"
+#      - PORT=8000
+#      - SERVICE_NAME=fast-api-1
+  fast-api-2:
+    build:
+      context: fast-api-2
+    image: fast-api-2
+    container_name: fast-api-2
+    ports:
+      - "8001:8001"
+#    environment:
+#      - ENV=test
+#      - HOST="0.0.0.0"
+#      - PORT=8001
+    networks:
+      - my_network
+networks:
+  my_network:
+    driver: bridge

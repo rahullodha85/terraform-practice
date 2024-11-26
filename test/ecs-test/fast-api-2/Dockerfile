@@ -2,10 +2,10 @@ FROM python:alpine3.20
 
 WORKDIR /app
 
-COPY src .
+COPY . .
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+EXPOSE 8001
 
 ENTRYPOINT ["python", "main.py"]
