@@ -94,7 +94,7 @@ resource "aws_subnet" "tf-main-private-2" {
   map_public_ip_on_launch = "false"
   availability_zone       = "us-east-1b"
   tags = {
-    Name = "tf-main-public-2"
+    Name = "tf-main-private-2"
     Mode = "private"
   }
 }
