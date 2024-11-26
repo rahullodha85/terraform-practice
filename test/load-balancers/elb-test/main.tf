@@ -84,7 +84,7 @@ module "asg" {
   AWS_KEY             = module.key.key_name
   LOAD_BALANCERS      = [module.elb.load_balancer_name]
   AMI_ID              = var.AMIS[var.AWS_REGION]
-  FILE_NAME           = "script.sh"
+  FILE                = data.template_cloudinit_config.user-data.rendered
   HEALTHCHK_TYPE      = "ELB"
   MAX_SIZE            = 3
   MIN_SIZE            = var.INSTANCE_COUNT
@@ -100,5 +100,23 @@ terraform {
 
 provider "aws" {
   region = var.AWS_REGION
+}
+
+variable "TEST" {
+}
+data "template_file" "shell-script" {
+  template = file("${path.module}/script.sh")
+  vars = {
+    TEST = var.TEST
+  }
+}
+
+data "template_cloudinit_config" "user-data" {
+
+  part {
+    filename     = data.template_file.shell-script.filename
+    content_type = "text/x-shellscript"
+    content      = data.template_file.shell-script.rendered
+  }
 }
 

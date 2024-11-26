@@ -25,7 +25,7 @@ variable "VPC_ZONE_IDENTIFIER" {
 variable "AWS_KEY" {
 }
 
-variable "FILE_NAME" {
+variable "FILE" {
 }
 
 variable "HEALTHCHK_TYPE" {
@@ -34,4 +34,3 @@ variable "HEALTHCHK_TYPE" {
 variable "LOAD_BALANCERS" {
   type = list(string)
 }
-

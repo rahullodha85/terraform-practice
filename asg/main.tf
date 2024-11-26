@@ -3,7 +3,7 @@ resource "aws_launch_configuration" "asg_launch_conf" {
   instance_type   = var.INSTANCE_TYPE
   key_name        = var.AWS_KEY
   security_groups = var.SECURITY_GRPS
-  user_data       = file(var.FILE_NAME)
+  user_data       = var.FILE
 }
 
 resource "aws_autoscaling_group" "asg_example" {
