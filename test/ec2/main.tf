@@ -8,7 +8,7 @@ module "ec2-instance" {
   VPC_SECURITY_GRPS = [aws_security_group.ec2_sg.id]
   KEY_NAME          = module.key.key_name
   AWS_REGION        = var.AWS_REGION
-  USER_DATA         = ""
+  USER_DATA         = file("${path.module}/script.sh")
   INSTANCE_COUNT    = var.COUNT
   AVAILABILITY_ZONE = module.data-queries.availability-zones
   SUBNET_ID         = module.data-queries.tf-vpc-subnet-public
@@ -23,6 +23,11 @@ module "key" {
 
 provider "aws" {
   region = var.AWS_REGION
+  default_tags {
+    tags = {
+      Name = "ec2-test"
+    }
+  }
 }
 
 resource "aws_security_group" "ec2_sg" {
@@ -36,6 +41,14 @@ resource "aws_security_group" "ec2_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     from_port = 22
     to_port = 22
+    protocol = "tcp"
+  }
+
+  ingress {
+    description = "HTTP from anywhere"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 80
+    to_port = 80
     protocol = "tcp"
   }
 
