@@ -5,7 +5,7 @@ module "data-queries" {
 
 module "ec2-instance" {
   source            = "../../ec2-standalone"
-  VPC_SECURITY_GRPS = [module.sec-grp.id]
+  VPC_SECURITY_GRPS = [aws_security_group.ec2_sg.id]
   KEY_NAME          = module.key.key_name
   AWS_REGION        = var.AWS_REGION
   USER_DATA         = ""
@@ -17,27 +17,35 @@ module "ec2-instance" {
 
 module "key" {
   source = "./../../key"
+  PATH_TO_PUBLIC_KEY = "${path.module}/my_aws_key.pub"
+  PATH_TO_PRIVATE_KEY = "${path.module}/my_aws_key"
 }
 
 provider "aws" {
   region = var.AWS_REGION
 }
 
-module "sec-grp" {
-  source                   = "../../security-group"
-  VPC_ID                   = module.data-queries.vpc-main
-  SECURITY_GRP_DESCRIPTION = "test"
-  SECURITY_GRP_NAME        = "test"
-}
+resource "aws_security_group" "ec2_sg" {
+  name = "ec2_sg"
+  vpc_id = module.data-queries.vpc-main
+  description = "ec2_sg for testing"
 
-module "ssh-rule" {
-  source = "../../security-group-rule/cidr"
-  CIDR_BLOCKS = ["0.0.0.0/0"]
-  FROM_PORT = "22"
-  PROTOCOL = "tcp"
-  SECURITY_GRP_ID = module.sec-grp.id
-  TO_PORT = "22"
-  TYPE = "ingress"
+  # ingress rules
+  ingress {
+    description = "SSH from anywhere"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+  }
 }
 
 terraform {
@@ -47,4 +55,3 @@ terraform {
     region = "us-east-1"
   }
 }
-
