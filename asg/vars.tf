@@ -31,7 +31,10 @@ variable "FILE_NAME" {
 variable "HEALTHCHK_TYPE" {
 }
 
-variable "LOAD_BALANCERS" {
-  type = list(string)
+variable "USER_DATA" {
+  type = string
 }
 
+variable "TARGET_GROUP_ARNS" {
+  type = list(string)
+}

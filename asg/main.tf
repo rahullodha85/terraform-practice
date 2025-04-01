@@ -1,20 +1,23 @@
-resource "aws_launch_configuration" "asg_launch_conf" {
-  image_id        = var.AMI_ID
-  instance_type   = var.INSTANCE_TYPE
-  key_name        = var.AWS_KEY
-  security_groups = var.SECURITY_GRPS
-  user_data       = file(var.FILE_NAME)
+resource "aws_launch_template" "asg_launch_template" {
+  image_id               = var.AMI_ID
+  instance_type          = var.INSTANCE_TYPE
+  key_name               = var.AWS_KEY
+  vpc_security_group_ids = var.SECURITY_GRPS
+  user_data              = base64encode(var.USER_DATA)
 }
 
 resource "aws_autoscaling_group" "asg_example" {
-  name                 = "asg_example"
-  vpc_zone_identifier  = var.VPC_ZONE_IDENTIFIER
-  launch_configuration = aws_launch_configuration.asg_launch_conf.name
-  max_size             = var.MAX_SIZE
-  min_size             = var.MIN_SIZE
-  health_check_type    = var.HEALTHCHK_TYPE
-  load_balancers       = var.LOAD_BALANCERS
-  force_delete         = true
+  name                = "asg_example"
+  vpc_zone_identifier = var.VPC_ZONE_IDENTIFIER
+  launch_template {
+    id      = aws_launch_template.asg_launch_template.id
+    version = "$Latest"
+  }
+  max_size          = var.MAX_SIZE
+  min_size          = var.MIN_SIZE
+  health_check_type = var.HEALTHCHK_TYPE
+  target_group_arns = var.TARGET_GROUP_ARNS
+  force_delete      = true
 
   tag {
     key                 = "Name"

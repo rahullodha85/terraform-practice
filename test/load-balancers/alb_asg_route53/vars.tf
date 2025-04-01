@@ -19,9 +19,27 @@ variable "AWS_REGION" {
 }
 
 variable "INSTANCE_COUNT" {
-  default = 1
+  default = 2
 }
 
 variable "NAME" {
   default = "my-test"
+}
+
+variable "ALB_PORT" {
+  type    = number
+  default = 80
+}
+
+variable "TG_PORT" {
+  type    = number
+  default = 80
+}
+
+variable "ALB_PROTOCOL" {
+  default = "HTTP"
+}
+
+variable "TG_PROTOCOL" {
+  default = "HTTP"
 }
