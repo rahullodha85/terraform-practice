@@ -20,3 +20,6 @@ data "aws_availability_zones" "availability-zones" {
   state = "available"
 }
 
+data "aws_route53_zone" "rahul_aws" {
+  name = "rahul-aws.com"
+}

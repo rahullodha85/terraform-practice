@@ -10,3 +10,10 @@ output "availability-zones" {
   value = data.aws_availability_zones.availability-zones.names
 }
 
+output "route53_zone_id" {
+  value = data.aws_route53_zone.rahul_aws.id
+}
+
+output "route53_zone_name" {
+  value = data.aws_route53_zone.rahul_aws.name
+}
