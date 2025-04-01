@@ -33,8 +33,8 @@ module "ec2-instance" {
 }
 
 module "key" {
-  source = "./../../../key"
-  PATH_TO_PUBLIC_KEY = "${path.module}/my_aws_key.pub"
+  source              = "./../../../key"
+  PATH_TO_PUBLIC_KEY  = "${path.module}/my_aws_key.pub"
   PATH_TO_PRIVATE_KEY = "${path.module}/my_aws_key"
 }
 
@@ -59,25 +59,25 @@ resource "aws_alb" "alb" {
 
 resource "aws_alb_listener" "listener" {
   load_balancer_arn = aws_alb.alb.arn
-  port = var.ALB_PORT
-  protocol = var.ALB_PROTOCOL
+  port              = var.ALB_PORT
+  protocol          = var.ALB_PROTOCOL
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_alb_target_group.target_group.arn
   }
 }
 
 resource "aws_alb_target_group" "target_group" {
-  name="${var.NAME}-tg"
-  port = var.TG_PORT
-  protocol = var.TG_PROTOCOL
-  vpc_id = module.data-queries.vpc-main
+  name        = "${var.NAME}-tg"
+  port        = var.TG_PORT
+  protocol    = var.TG_PROTOCOL
+  vpc_id      = module.data-queries.vpc-main
   target_type = "instance"
 
   health_check {
-    path = "/"
-    port = var.TG_PORT
+    path     = "/"
+    port     = var.TG_PORT
     protocol = var.TG_PROTOCOL
   }
 }
@@ -88,33 +88,33 @@ resource "aws_alb_target_group_attachment" "tg_attachment" {
 }
 
 resource "aws_security_group" "alb_sg" {
-  name = "${var.NAME}-alb-sg"
+  name   = "${var.NAME}-alb-sg"
   vpc_id = module.data-queries.vpc-main
 
   # ingress rules
   ingress {
     description = "HTTP from anywhere"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = var.ALB_PORT
-    to_port = var.ALB_PORT
-    protocol = "tcp"
+    from_port   = var.ALB_PORT
+    to_port     = var.ALB_PORT
+    protocol    = "tcp"
   }
 
-  # ingress rules
   ingress {
     description = "SSH from anywhere"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
   }
 
+  #egress rules
   egress {
     description = "Allow all outbound traffic"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
   }
 }
 
@@ -123,12 +123,12 @@ variable "NAME" {
 }
 
 variable "ALB_PORT" {
-  type = number
+  type    = number
   default = 80
 }
 
 variable "TG_PORT" {
-  type = number
+  type    = number
   default = 80
 }
 
@@ -145,12 +145,12 @@ variable "AWS_REGION" {
 }
 
 variable "INTERNAL" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "INSTANCE_COUNT" {
-  type = number
+  type    = number
   default = 1
 }
 
