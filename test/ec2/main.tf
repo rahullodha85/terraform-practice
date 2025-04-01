@@ -61,6 +61,10 @@ resource "aws_security_group" "ec2_sg" {
   }
 }
 
+output "instance_ids" {
+  value = module.ec2-instance.id[var.COUNT - 1]
+}
+
 terraform {
   backend "s3" {
     bucket = "rogue-bucket"
