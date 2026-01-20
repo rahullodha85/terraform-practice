@@ -1,0 +1,6 @@
+ENV: prod
+HOST: 0.0.0.0
+PORT: "8000"
+SERVICE_NAME: fast-api-1
+API_PREFIX: /fast-api-1
+API2_URL: http://localhost:8001

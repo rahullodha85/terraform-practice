@@ -5,3 +5,4 @@ sudo apt-get -y install nginx
 
 MYIP=$(hostname -I)
 echo "this is: $MYIP" >> /var/www/html/index.html
+echo "test var: ${TEST}" >> /var/www/html/index.html
